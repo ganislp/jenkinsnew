@@ -75,7 +75,7 @@ pipeline {
         }  
         stage("Stage E2E"){ 
             steps {
-               echo "STAGE_URL is "${env.STAGING_URL}
+               echo "STAGE_URL is - " ${env.STAGING_URL}
             }
 
         }     
