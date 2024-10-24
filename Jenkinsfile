@@ -52,10 +52,12 @@ pipeline {
                     node_modules/.bin/netlify deploy --dir=build --json > deploy-output.json
                     
                 '''
-            }
             script {
                 env.STAGING_URL = sh(script:"node_modules/.bin/node-jq -r '.deploy_url' deploy-output.json",returnStdout: true)
+            }   
+             
             }
+
         }
         stage("Deploy prod"){
              agent {
@@ -75,7 +77,7 @@ pipeline {
         }  
         stage("Stage E2E"){ 
             steps {
-               echo "STAGE_URL is - " ${env.STAGING_URL}
+               echo "STAGE_URL is -  ${env.STAGING_URL}"
             }
 
         }     
