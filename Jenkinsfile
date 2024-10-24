@@ -68,14 +68,11 @@ pipeline {
                     echo "Deploying to production. Site ID : $NETLIFY_SITE_ID"
                     node_modules/.bin/netlify deploy --dir=build --prod
                 '''
-                script {
-                    env.STAGE_URL = 'TEST'
-                }
             }
         }  
         stage("Stage E2E"){ 
             steps {
-               echo "STAGE_URL is " ${env.STAGE_URL}
+               echo "STAGE_URL is "
             }
 
         }     
