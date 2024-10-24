@@ -52,8 +52,9 @@ pipeline {
                     node_modules/.bin/netlify deploy --dir=build --prod
                 '''
             }
-        } 
-        stage(Prod E2E){
+        }
+
+        stage("Prod E2E"){
             environment {
                CI_ENVIRONMENT_URL = 'https://resonant-granita-07b668.netlify.app' 
             }
