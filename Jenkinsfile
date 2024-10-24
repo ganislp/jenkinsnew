@@ -7,14 +7,6 @@ pipeline {
        
     }
     stages {
-
-       
-       
-       stage('dockerbiud'){
-           steps{
-               sh 'docker build -t my-paywrite .'
-           }
-        }
         stage('Build') {
             agent {
                 docker {
