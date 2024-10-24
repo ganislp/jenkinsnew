@@ -47,13 +47,13 @@ pipeline {
             }  
             steps{
                 sh '''
-                    node_modules/.bin/netlify --version
+                    netlify --version
                     echo "Deploying to staging. Site ID : $NETLIFY_SITE_ID"
-                    node_modules/.bin/netlify deploy --dir=build --json > deploy-output.json
+                    netlify deploy --dir=build --json > deploy-output.json
                     
                 '''
             script {
-                env.STAGING_URL = sh(script:"node_modules/.bin/node-jq -r '.deploy_url' deploy-output.json",returnStdout: true)
+                env.STAGING_URL = sh(script:"node-jq -r '.deploy_url' deploy-output.json",returnStdout: true)
             }   
 
             }
@@ -68,9 +68,9 @@ pipeline {
             }  
             steps{
                 sh '''
-                    node_modules/.bin/netlify --version
+                    netlify --version
                     echo "Deploying to production. Site ID : $NETLIFY_SITE_ID"
-                    node_modules/.bin/netlify deploy --dir=build --prod
+                    netlify deploy --dir=build --prod
                 '''
             }
         }  
