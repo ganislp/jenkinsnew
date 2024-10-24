@@ -1,9 +1,12 @@
 pipeline {
+    agent any
+
     stages {
+
        stage('dockerbiud'){
            steps{
                sh 'docker build -t my-paywrite .'
            }
         }
     }
-    }
+}
