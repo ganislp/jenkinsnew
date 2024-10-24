@@ -18,7 +18,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                   image  'node:18-alpine'
+                   image  'my-paywrite'
                    reuseNode true
                 }
             }  
@@ -35,7 +35,7 @@ pipeline {
         stage("Test"){
              agent {
                 docker {
-                   image  'node:18-alpine'
+                   image  'my-paywrite'
                    reuseNode true
                 }
             }  
@@ -49,13 +49,12 @@ pipeline {
         stage("Deploy staging"){
              agent {
                 docker {
-                   image  'node:18-alpine'
+                   image  'my-paywrite'
                    reuseNode true
                 }
             }  
             steps{
                 sh '''
-                     npm install netlify-cli node-jq
                     node_modules/.bin/netlify --version
                     echo "Deploying to staging. Site ID : $NETLIFY_SITE_ID"
                     node_modules/.bin/netlify deploy --dir=build --json > deploy-output.json
@@ -71,13 +70,12 @@ pipeline {
         stage("Deploy prod"){
              agent {
                 docker {
-                   image  'node:18-alpine'
+                   image  'my-paywrite'
                    reuseNode true
                 }
             }  
             steps{
                 sh '''
-                    npm install netlify-cli 
                     node_modules/.bin/netlify --version
                     echo "Deploying to production. Site ID : $NETLIFY_SITE_ID"
                     node_modules/.bin/netlify deploy --dir=build --prod
